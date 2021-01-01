@@ -1,0 +1,29 @@
+import java.util.*;
+  import java.io.*;
+  
+  public class Main {
+    public static void main(String args[]) throws IOException {
+      
+      Scanner sc=new Scanner(System.in);
+      int t=sc.nextInt();
+      while(t-->0){
+        int n=sc.nextInt();
+        char ch[] = new char[n]; 
+        for (int i = 0; i < n; i++)  
+            ch[i] = sc.next().charAt(0);
+          getOcc(ch,n);
+      }
+      
+    }
+    static void getOcc(char[] ch,int n)
+    {
+      
+      
+      int find = 0; 
+        for (int i = 0; i < n; i++) 
+                if (ch[i] == 'x')  
+                    find++;                 
+                System.out.println(find);
+    }
+    
+  }
