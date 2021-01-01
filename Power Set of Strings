@@ -1,0 +1,28 @@
+import java.util.*;
+  import java.io.*;
+  
+  public class Main {
+    public static void main(String args[]) throws IOException {
+      
+      Scanner sc=new Scanner(System.in);
+      String str=sc.next();
+      per(str); 
+    }
+    static void power(String str,int index,int n,String curr){
+      if(index==n){
+        return;
+      }
+      System.out.println(curr);
+      for(int i=index+1;i<n;i++){
+        curr+=str.charAt(i);
+        power(str,i,n,curr);
+        curr=curr.substring(0,curr.length()-1);
+      }
+      return;
+    }
+    static void per(String str){
+      char[] arr=str.toCharArray();
+      Arrays.sort(arr);
+      power(new String(arr),-1,str.length(),"");
+    }
+  }
