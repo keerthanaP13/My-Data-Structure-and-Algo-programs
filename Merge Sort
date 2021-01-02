@@ -1,0 +1,77 @@
+import java.util.*;
+  import java.io.*;
+  
+  public class Main {
+    public static void main(String args[]) throws IOException {
+      
+      Scanner sc=new Scanner(System.in);
+      int t=sc.nextInt();
+      while(t-->0){
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<n;i++){
+          arr[i]=sc.nextInt();
+        }
+        //MergeSort ob = new MergeSort(); 
+        sort(arr, 0, arr.length - 1); 
+        printArray(arr);
+      }
+      
+    }public static void sort(int arr[],int l,int h){
+      
+      if(l<h){
+        int mid=(l+h)/2;
+        
+        sort(arr,l,mid);
+        sort(arr,mid+1,h);
+        merge(arr,l,mid,h);
+      }
+      
+      
+    }public static void merge(int arr[],int l,int m,int h){
+      int p=m-l+1;
+      int k=h-m;
+      int larr[]=new int[p];
+      int rarr[]=new int[k];
+      for(int i=0;i<p;++i){
+        larr[i]=arr[l+i];
+      }
+      for(int j=0;j<k;++j){
+        rarr[j]=arr[m+1+j];
+      }
+      int i=0,j=0;
+      int u=l;
+      while(i<p&&j<k){
+        if(larr[i]<=rarr[j]){
+          arr[u]=larr[i];
+          i++;
+        }
+        else{
+          arr[u]=rarr[j];
+          j++;
+        }
+        u++;
+      }
+      while(i<p){
+        arr[u]=larr[i];
+        i++;
+        u++;
+      }
+      while(j<k){
+        arr[u]=rarr[j];
+        j++;
+        u++;
+      }
+    }
+  
+  
+  static void printArray(int arr[]) 
+    { 
+        int n = arr.length; 
+        for (int i = 0; i < n; i++) 
+            System.out.print(arr[i] + " "); 
+        System.out.println(); 
+    }
+    
+  }
+  
