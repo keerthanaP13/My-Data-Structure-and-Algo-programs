@@ -1,0 +1,73 @@
+import java.util.*;
+  import java.io.*;
+ class Node{
+        int data;
+        Node next;
+        Node(int data){
+          this.data=data;
+          this.next=null;
+        }
+      }
+  class LinkedList{
+    Node head=null;
+    public void insert(int data){
+          Node newnode=new Node(data);
+          Node temp=head;
+          if(head==null)
+            head=newnode;
+          else{
+          while(temp.next!=null){
+            temp=temp.next;
+          }
+          temp.next=newnode;
+          }
+    }
+    public void print(){
+          Node temp=head;
+          int c=0;
+          while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+          }
+    }
+   public Node reverse(Node head, int k)
+    {
+       Node current = head;
+       Node next = null;
+       Node prev = null;
+       int count = 0;
+       /* Reverse first k nodes of linked list */
+       while (count < k && current != null)
+       {
+           next = current.next;
+           current.next = prev;
+           prev = current;
+           current = next;
+           count++;
+       }
+       /* next is now a pointer to (k+1)th node
+          Recursively call for the list starting from current.
+          And make rest of the list as next of first node */
+       if (next != null)
+          head.next = reverse(next, k);
+       return prev;
+    }
+  }
+  public class Main {
+    public static void main(String args[]) throws IOException {
+      Scanner sc= new Scanner(System.in);
+      int t=sc.nextInt();
+      while(t-->0){
+        LinkedList sll=new LinkedList();
+        int n=sc.nextInt();
+        for(int i=0;i<n;i++){
+          int ele=sc.nextInt();
+          sll.insert(ele);
+        }
+        int k=sc.nextInt();
+        sll.head =sll.reverse(sll.head,k);
+        sll.print();
+        System.out.println("");
+      }
+    }
+  }
